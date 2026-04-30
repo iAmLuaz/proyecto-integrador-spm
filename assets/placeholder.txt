@@ -1,0 +1,11 @@
+// assets/placeholder.txt
+// Este archivo es temporal para crear la carpeta assets
+// Expo requiere que existan las imágenes referenciadas en app.json
+// 
+// Para generar los iconos reales:
+// 1. Ve a https://www.appicon.co/
+// 2. Sube un logo o diseño simple
+// 3. Genera los iconos para React Native
+// 4. Reemplaza icon.png, splash.png, adaptive-icon.png y favicon.png
+//
+// Por ahora, el proyecto funcionará sin ellos (solo afecta el icono de la app)
