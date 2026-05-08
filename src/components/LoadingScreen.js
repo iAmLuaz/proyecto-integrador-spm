@@ -1,30 +1,23 @@
 // src/components/LoadingScreen.js
-// Pantalla de carga reutilizable
-
 import React from 'react';
 import { View, ActivityIndicator, Text, StyleSheet } from 'react-native';
+import { PALETTE, FONT } from '../theme/theme.js';
 
-const LoadingScreen = ({ message = 'Cargando...' }) => {
-  return (
-    <View style={styles.container}>
-      <ActivityIndicator size="large" color="#2563EB" />
-      <Text style={styles.message}>{message}</Text>
-    </View>
-  );
-};
+const LoadingScreen = ({ message = 'Cargando…' }) => (
+  <View style={styles.container}>
+    <ActivityIndicator size="large" color={PALETTE.accent} />
+    <Text style={styles.message}>{message}</Text>
+  </View>
+);
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F9FAFB',
+    backgroundColor: PALETTE.bg,
   },
-  message: {
-    color: '#4B5563',
-    marginTop: 16,
-    fontSize: 16,
-  },
+  message: { color: PALETTE.textMuted, marginTop: 16, fontSize: FONT.size.lg },
 });
 
 export default LoadingScreen;

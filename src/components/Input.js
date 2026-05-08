@@ -1,98 +1,74 @@
 // src/components/Input.js
-// Componente de input reutilizable con validaciones visuales
+// Input base con estilo premium y manejo de error.
 
 import React from 'react';
 import { View, Text, TextInput, StyleSheet } from 'react-native';
+import { PALETTE, RADIUS, FONT, SPACING } from '../theme/theme.js';
 
-/**
- * Input personalizado con validación visual
- * @param {string} label - Etiqueta del campo
- * @param {string} value - Valor actual
- * @param {Function} onChangeText - Función para cambiar el valor
- * @param {string} placeholder - Texto placeholder
- * @param {boolean} secureTextEntry - Ocultar texto (para contraseñas)
- * @param {string} keyboardType - Tipo de teclado
- * @param {string} error - Mensaje de error para mostrar
- */
-const Input = ({ 
-  label, 
-  value, 
-  onChangeText, 
+const Input = ({
+  label,
+  value,
+  onChangeText,
   placeholder,
   secureTextEntry = false,
   keyboardType = 'default',
   error = null,
   multiline = false,
-  editable = true
+  editable = true,
+  hint,
 }) => {
-
-  const inputStyle = [
-    styles.input,
-    error ? styles.inputError : styles.inputNormal,
-  ];
-
   return (
     <View style={styles.container}>
-      {label && (
-        <Text style={styles.label}>
-          {label}
-        </Text>
-      )}
-      
+      {label ? <Text style={styles.label}>{label}</Text> : null}
       <TextInput
-        style={inputStyle}
+        style={[
+          styles.input,
+          multiline && styles.multiline,
+          error ? styles.inputError : null,
+          !editable && styles.disabled,
+        ]}
         value={value}
         onChangeText={onChangeText}
         placeholder={placeholder}
-        placeholderTextColor="#9CA3AF"
+        placeholderTextColor={PALETTE.textSubtle}
         secureTextEntry={secureTextEntry}
         keyboardType={keyboardType}
         multiline={multiline}
         numberOfLines={multiline ? 3 : 1}
         editable={editable}
       />
-
-      {error && (
-        <Text style={styles.errorText}>
-          {error}
-        </Text>
-      )}
+      {error ? (
+        <Text style={styles.errorText}>{error}</Text>
+      ) : hint ? (
+        <Text style={styles.hint}>{hint}</Text>
+      ) : null}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    marginBottom: 16,
-  },
+  container: { marginBottom: SPACING.md },
   label: {
-    color: '#374151',
-    fontWeight: '600',
-    marginBottom: 8,
-    fontSize: 16,
+    color: PALETTE.text,
+    fontWeight: FONT.weight.semibold,
+    marginBottom: 6,
+    fontSize: FONT.size.md,
   },
   input: {
-    borderRadius: 8,
-    paddingHorizontal: 16,
+    borderRadius: RADIUS.md,
+    paddingHorizontal: 14,
     paddingVertical: 12,
-    fontSize: 16,
-    color: '#1F2937',
-  },
-  inputNormal: {
+    fontSize: FONT.size.lg,
+    color: PALETTE.text,
+    backgroundColor: PALETTE.surface,
     borderWidth: 1,
-    borderColor: '#D1D5DB',
-    backgroundColor: 'white',
+    borderColor: PALETTE.border,
   },
-  inputError: {
-    borderWidth: 2,
-    borderColor: '#EF4444',
-    backgroundColor: '#FEF2F2',
-  },
-  errorText: {
-    color: '#DC2626',
-    fontSize: 14,
-    marginTop: 4,
-  },
+  multiline: { minHeight: 80, textAlignVertical: 'top' },
+  inputError: { borderColor: PALETTE.danger, backgroundColor: PALETTE.dangerSoft },
+  disabled: { backgroundColor: PALETTE.surfaceAlt, color: PALETTE.textMuted },
+  errorText: { color: PALETTE.danger, fontSize: FONT.size.sm, marginTop: 4 },
+  hint: { color: PALETTE.textMuted, fontSize: FONT.size.sm, marginTop: 4 },
 });
 
 export default Input;

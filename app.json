@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Gestión de Evaluaciones UVM",
+    "name": "Gym Tracker",
     "slug": "app-gestion-evaluaciones-uvm",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -9,7 +9,7 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#FF5757"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -21,17 +21,20 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#FF5757"
       },
       "package": "com.uvm.evaluaciones"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/favicon.ico"
     },
     "extra": {
       "eas": {
         "projectId": "8d48f9f7-0088-47dc-9788-453d6a24b62a"
       }
-    }
+    },
+    "plugins": [
+      "expo-font"
+    ]
   }
 }
